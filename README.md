@@ -1,6 +1,4 @@
 # SentimentStar
-A home project with the goal of gaining useful and demonstrable practical experience in Apache Kafka and ksql for data stream processing
-
 I conducted a home project with the goal of gaining useful and demonstrable practical experience in Apache Kafka and ksql for data stream processing - a modern approach to data integration particularly valuable for today's world of high data volumes and continuous streams of events.
 
 #IoT #Kafka #RaspberryPi #Node-RED #StreamProcessing #EventDrivenArchitecture #Cognitive #OpenSource #SentimentAnalysis #RealTime #BigData #MQTT
