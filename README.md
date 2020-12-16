@@ -26,7 +26,7 @@ The Python source code is also attached.  This has two threads, sharing global v
 
 My python app used code from https://github.com/modmypi/Programmable-Christmas-Star as the basis.
 
-Kafka has just two ksql commands - a stream and a table, created as persistent querirs that run continuously:
+Kafka has just two ksql commands - a stream and a table, created as persistent queries that run continuously:
 - To create a stream representing the 'nodered' topics written to by Node-RED:
 ksql> create stream nodered (tweettime int, tweetclass varchar) with (kafka_topic='nodered', value_format='JSON');
 
