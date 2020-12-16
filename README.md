@@ -17,11 +17,12 @@ Node-RED and the Python app (code attached) are both running on a local Raspberr
 
 The Node-RED flow is attached.  View the raw content and import it into Node-RED from the clipboard.
 - this requries a Twitter account with a developer account (http://developer.twitter.com) to obtain the desired credentials for the Twitter input node.  This uses https://flows.nodered.org/node/node-red-node-twitter  
-- the Kafka producer/consumer nodes require the hostname of the Kafka cluster.  This uses https://flows.nodered.org/node/node-red-contrib-kafka-client
-- there is also a hook to set the 'power' as 'on' or 'off', via MQTT.  I have done this by responding to 'Alexa, turn star on/off' commands over MQTT - via Alexa Home Skill Bridge (https://alexa-node-red.bm.hardill.me.uk) and Node-RED running on the IBM Watson IoT Platform - as I happen to have an instance running there, with the Alexa Home Bridge already set up.
+- the Kafka producer/consumer nodes require the hostname:port of the Kafka cluster e.g. Jons-MacbookPro:9092.  This uses https://flows.nodered.org/node/node-red-contrib-kafka-client
+- there is also a test hook in the flow to set the 'power' as 'on' or 'off'.  It needs to be 'on' for the flow of tweet data into Kafka.  I have this operating off an MQTT topic.  I use the Alexa Home Skill Bridge (https://alexa-node-red.bm.hardill.me.uk) on a Node-RED instance running on the IBM Watson IoT Platform - I already had this set up to Alexa-enable a number of other devices.  This lets me say 'Alexa, turn star on/off', and this local flow receives that over MQTT into the 'switch' node at the bottom of the flow.
 - this produces data to a kafka topic called 'nodered, which gets created automatically.  There is also a 'helloworld' test in the flow to confirm Kafka connectivity.
+- this exposes two HTTP GET endpoints that are called by the Python app.
 
-The Python source code is already attached.  This has two threads, sharing global variables (probably a lazy way to do it).
+The Python source code is also attached.  This has two threads, sharing global variables (probably a lazy way to do it).
 - thread 1: polls the Node-RED API running locally to get 'power' and the 'lastWindowMostPopular' tweet topic.
 - main thread: sets the star LED pattern based on the most popular topic, or turns lights off on the star if power is 'off'. 
 
