@@ -1,0 +1,948 @@
+[
+    {
+        "disabled": false,
+        "id": "d0969b4.b807368",
+        "info": "",
+        "label": "Flow 1",
+        "type": "tab"
+    },
+    {
+        "broker": "",
+        "fromOffset": "latest",
+        "groupid": "1",
+        "id": "941d6a09.32d1a",
+        "name": "helloworld topic",
+        "outOfRangeOffset": "earliest",
+        "topic": "helloworld",
+        "type": "kafka-consumer",
+        "wires": [
+            [
+                "c092e1f9.32cb48",
+                "6881c1b3.0db26"
+            ]
+        ],
+        "x": 540,
+        "y": 120,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "ackTimeoutMs": 100,
+        "attributes": 0,
+        "broker": "",
+        "id": "82c7ce7.cd90fb",
+        "name": "nodered topic",
+        "requireAcks": 1,
+        "topic": "nodered",
+        "type": "kafka-producer",
+        "wires": [],
+        "x": 820,
+        "y": 380,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": true,
+        "complete": "false",
+        "console": false,
+        "id": "c092e1f9.32cb48",
+        "name": "",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 750,
+        "y": 100,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "crontab": "",
+        "id": "fbb5a6be.d60f2",
+        "name": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "hello world",
+        "payloadType": "str",
+        "repeat": "",
+        "topic": "",
+        "type": "inject",
+        "wires": [
+            [
+                "8063129e.e2e408",
+                "cd3246a0.3562e8"
+            ]
+        ],
+        "x": 100,
+        "y": 120,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "false",
+        "console": false,
+        "id": "8063129e.e2e408",
+        "name": "",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 290,
+        "y": 100,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "payload.value",
+        "console": false,
+        "id": "6881c1b3.0db26",
+        "name": "",
+        "targetType": "msg",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 770,
+        "y": 140,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "cc613233.ac45a8",
+        "inputs": 0,
+        "name": "#brexit, #christmas, #covid",
+        "tags": "#brexit, #christmas, #covid",
+        "twitter": "",
+        "type": "twitter in",
+        "user": "false",
+        "wires": [
+            [
+                "952b64e.7859b18",
+                "f352e8bf.74e118",
+                "75daba83.cfb7b4"
+            ]
+        ],
+        "x": 130,
+        "y": 360,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "payload",
+        "console": false,
+        "id": "964893c1.106fb",
+        "name": "tweet classified",
+        "targetType": "msg",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 820,
+        "y": 440,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "checkall": "true",
+        "id": "36d4460e.b60132",
+        "name": "",
+        "outputs": 12,
+        "property": "payload",
+        "propertyType": "msg",
+        "repair": false,
+        "rules": [
+            {
+                "t": "cont",
+                "v": "brexit",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Brexit",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": " EU ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "christmas",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Christmas",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Corona",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "COVID",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "covid",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Covid",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "vaccine",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Vaccine",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "type": "switch",
+        "wires": [
+            [
+                "8f0bc522.26bda8"
+            ],
+            [
+                "8f0bc522.26bda8"
+            ],
+            [
+                "8f0bc522.26bda8"
+            ],
+            [
+                "7e3f65f6.4a9f1c"
+            ],
+            [
+                "7e3f65f6.4a9f1c"
+            ],
+            [
+                "5940abd7.7a95e4"
+            ],
+            [
+                "5940abd7.7a95e4"
+            ],
+            [
+                "5940abd7.7a95e4"
+            ],
+            [
+                "5940abd7.7a95e4"
+            ],
+            [
+                "5940abd7.7a95e4"
+            ],
+            [
+                "5940abd7.7a95e4"
+            ],
+            [
+                "d7e9488f.ddf798"
+            ]
+        ],
+        "x": 230,
+        "y": 620,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "action": "",
+        "from": "",
+        "id": "7e3f65f6.4a9f1c",
+        "name": "christmas",
+        "property": "",
+        "reg": false,
+        "rules": [
+            {
+                "p": "payload",
+                "pt": "msg",
+                "t": "set",
+                "to": "christmas",
+                "tot": "str"
+            }
+        ],
+        "to": "",
+        "type": "change",
+        "wires": [
+            [
+                "95efec1.d3bec9"
+            ]
+        ],
+        "x": 400,
+        "y": 600,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "action": "",
+        "from": "",
+        "id": "5940abd7.7a95e4",
+        "name": "covid",
+        "property": "",
+        "reg": false,
+        "rules": [
+            {
+                "p": "payload",
+                "pt": "msg",
+                "t": "set",
+                "to": "covid",
+                "tot": "str"
+            }
+        ],
+        "to": "",
+        "type": "change",
+        "wires": [
+            [
+                "95efec1.d3bec9"
+            ]
+        ],
+        "x": 410,
+        "y": 640,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "action": "",
+        "from": "",
+        "id": "d7e9488f.ddf798",
+        "name": "ignored",
+        "property": "",
+        "reg": false,
+        "rules": [
+            {
+                "p": "payload",
+                "pt": "msg",
+                "t": "set",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "to": "",
+        "type": "change",
+        "wires": [
+            [
+                "14be3e4f.dfaac2"
+            ]
+        ],
+        "x": 400,
+        "y": 680,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "payload",
+        "console": false,
+        "id": "14be3e4f.dfaac2",
+        "name": "tweet ignored",
+        "targetType": "msg",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 620,
+        "y": 680,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "action": "",
+        "from": "",
+        "id": "8f0bc522.26bda8",
+        "name": "brexit",
+        "property": "",
+        "reg": false,
+        "rules": [
+            {
+                "p": "payload",
+                "pt": "msg",
+                "t": "set",
+                "to": "brexit",
+                "tot": "str"
+            }
+        ],
+        "to": "",
+        "type": "change",
+        "wires": [
+            [
+                "95efec1.d3bec9"
+            ]
+        ],
+        "x": 410,
+        "y": 560,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "tweet",
+        "console": false,
+        "id": "952b64e.7859b18",
+        "name": "",
+        "targetType": "msg",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 390,
+        "y": 360,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "msg.payload = {\n        tweettime: Number(msg.tweet.timestamp_ms),\n        tweetclass:msg.payload\n    } ;\nreturn msg;",
+        "id": "95efec1.d3bec9",
+        "name": "Convert to JSON",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            [
+                "79c203a0.50246c"
+            ]
+        ],
+        "x": 610,
+        "y": 600,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "action": "",
+        "id": "79c203a0.50246c",
+        "name": "converto to string",
+        "pretty": false,
+        "property": "payload",
+        "type": "json",
+        "wires": [
+            [
+                "964893c1.106fb",
+                "82c7ce7.cd90fb"
+            ]
+        ],
+        "x": 610,
+        "y": 440,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "broker": "",
+        "fromOffset": "latest",
+        "groupid": "1",
+        "id": "47412607.0ad328",
+        "name": "tweetsperperiod",
+        "outOfRangeOffset": "earliest",
+        "topic": "TWEETSPERPERIOD",
+        "type": "kafka-consumer",
+        "wires": [
+            [
+                "9d22b7c7.6d95",
+                "535b66c6.155df"
+            ]
+        ],
+        "x": 180,
+        "y": 865,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "false",
+        "console": false,
+        "id": "9d22b7c7.6d95",
+        "name": "",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 440,
+        "y": 885,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "crontab": "",
+        "id": "5301db38.73ecf4",
+        "name": "christmas",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "{\"topic\":\"TWEETSPERPERIOD\",\"value\":\"{\\\"COUNT\\\":12}\",\"offset\":2206,\"partition\":0,\"highWaterOffset\":2210,\"key\":\"christmas\\u0000\\u0000\\u0001vX\ufffd\\u0019\\u0000\",\"timestamp\":\"2020-12-12T21:44:09.655Z\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "topic": "",
+        "type": "inject",
+        "wires": [
+            [
+                "535b66c6.155df"
+            ]
+        ],
+        "x": 180,
+        "y": 965,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "let windowIdVal = msg.payload.key.substring(msg.payload.key.length-5);\nlet topicVal = msg.payload.key.substring(0,msg.payload.key.length-5);\nlet number = Number(msg.payload.value.split(':')[1].split('}')[0]);\nmsg.payload = {\n        windowId:windowIdVal,\n        topic:topicVal,\n        count:number\n    } ;\nreturn msg;",
+        "id": "535b66c6.155df",
+        "name": "reformat and split out windowId",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            [
+                "8861dc.25ed5628"
+            ]
+        ],
+        "x": 470,
+        "y": 925,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "false",
+        "console": false,
+        "id": "4442a2ec.2ac08c",
+        "name": "",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 730,
+        "y": 1165,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "crontab": "",
+        "id": "7982b993.5fed68",
+        "name": "brexit",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "{\"topic\":\"TWEETSPERPERIOD\",\"value\":\"{\\\"COUNT\\\":1}\",\"offset\":2210,\"partition\":0,\"highWaterOffset\":2213,\"key\":\"brexit\\u0000\\u0000\\u0001vX\ufffd@\\u0010\",\"timestamp\":\"2020-12-12T21:44:12.030Z\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "topic": "",
+        "type": "inject",
+        "wires": [
+            [
+                "535b66c6.155df"
+            ]
+        ],
+        "x": 170,
+        "y": 1045,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "crontab": "",
+        "id": "c27bfcfd.1d2a",
+        "name": "covid",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "{\"topic\":\"TWEETSPERPERIOD\",\"value\":\"{\\\"COUNT\\\":3}\",\"offset\":2213,\"partition\":0,\"highWaterOffset\":2215,\"key\":\"covid\\u0000\\u0000\\u0001vX\ufffd@\\u0010\",\"timestamp\":\"2020-12-12T21:44:14.265Z\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "topic": "",
+        "type": "inject",
+        "wires": [
+            [
+                "535b66c6.155df"
+            ]
+        ],
+        "x": 170,
+        "y": 1005,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "var currentWindowId = global.get(\"currentWindowId\");\nif (currentWindowId)\n{\n    // allow for it not to be set the first time\n    if(currentWindowId==msg.payload.windowId)\n    {\n        // Still in the same window\n        var currentCount = parseInt(global.get(\"currentCount\"));\n        if(msg.payload.count > currentCount)\n        {\n            // This topic (which may be the same topic) has a higher count in this window\n            global.set(\"currentCount\", msg.payload.count);\n            global.set(\"currentTopic\", msg.payload.topic);\n        }\n    }\n    else\n    {\n        // New window - record the last most popular topic\n        global.set(\"newWindow\", \"True\");\n        global.set(\"lastWindowMostPopular\", global.get(\"currentTopic\"));\n        global.set(\"lastWindowCount\", parseInt(global.get(\"currentCount\")));\n        // Reset the high water mark!\n        global.set(\"currentWindowId\", msg.payload.windowId);\n        global.set(\"currentCount\", msg.payload.count);\n        global.set(\"currentTopic\", msg.payload.topic);    \n    }\n}\nelse\n{\n    // Set it the first time\n    global.set(\"currentWindowId\", msg.payload.windowId);\n    global.set(\"currentCount\", msg.payload.count);\n    global.set(\"currentTopic\", msg.payload.topic);\n}\nmsg.payload.currentWindowId=global.get(\"currentWindowId\");\nmsg.payload.currentTopic=global.get(\"currentTopic\");\nmsg.payload.currentCount=parseInt(global.get(\"currentCount\"));\nreturn msg;",
+        "id": "8861dc.25ed5628",
+        "name": "reset high water mark this window",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            [
+                "298cf6b9.a668ea"
+            ]
+        ],
+        "x": 540,
+        "y": 985,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "\nif(global.get(\"newWindow\")==\"True\")\n{\n    msg.payload = {\n        lastWindowMostPopular:global.get(\"lastWindowMostPopular\"),\n        lastWindowCount:parseInt(global.get(\"lastWindowCount\"))\n    };\n    global.set(\"newWindow\", \"False\"); \n}\nelse\n{\n    // Clear the payload\n    msg.payload = null;\n}\nreturn msg;",
+        "id": "298cf6b9.a668ea",
+        "name": "set payload to most popular",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            [
+                "bc294065.0719f"
+            ]
+        ],
+        "x": 620,
+        "y": 1045,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "checkall": "true",
+        "id": "bc294065.0719f",
+        "name": "display if payload not null",
+        "outputs": 1,
+        "property": "payload",
+        "propertyType": "msg",
+        "repair": false,
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "type": "switch",
+        "wires": [
+            [
+                "4442a2ec.2ac08c"
+            ]
+        ],
+        "x": 690,
+        "y": 1105,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "76d8ce23.d251b",
+        "method": "get",
+        "name": "lastWindowMostPopular",
+        "swaggerDoc": "",
+        "type": "http in",
+        "upload": false,
+        "url": "/lastWindowMostPopular",
+        "wires": [
+            [
+                "a4626fa3.020768"
+            ]
+        ],
+        "x": 230,
+        "y": 1320,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "headers": {},
+        "id": "7a3c711.7d73a1",
+        "name": "",
+        "statusCode": "",
+        "type": "http response",
+        "wires": [],
+        "x": 700,
+        "y": 1320,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "msg.payload = {\n    lastWindowMostPopular:global.get(\"lastWindowMostPopular\"),\n    lastWindowCount:parseInt(global.get(\"lastWindowCount\"))\n};\nreturn msg;",
+        "id": "a4626fa3.020768",
+        "name": "set payload to most popular",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            [
+                "7a3c711.7d73a1"
+            ]
+        ],
+        "x": 490,
+        "y": 1320,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": true,
+        "complete": "false",
+        "console": false,
+        "id": "22073ca4.a4bb84",
+        "name": "",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 370,
+        "y": 1640,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "checkall": "true",
+        "id": "f1b4f27e.42f5e8",
+        "name": "",
+        "outputs": 2,
+        "property": "payload",
+        "propertyType": "msg",
+        "repair": false,
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "false",
+                "vt": "str"
+            }
+        ],
+        "type": "switch",
+        "wires": [
+            [
+                "22073ca4.a4bb84",
+                "51870a43.87641c"
+            ],
+            [
+                "22073ca4.a4bb84",
+                "2614cfd5.b9fa18"
+            ]
+        ],
+        "x": 550,
+        "y": 1720,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "global.set(\"power\", \"on\"); \nreturn msg;",
+        "id": "51870a43.87641c",
+        "name": "on",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            []
+        ],
+        "x": 730,
+        "y": 1700,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "global.set(\"power\", \"off\"); \nreturn msg;",
+        "id": "2614cfd5.b9fa18",
+        "name": "off",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            []
+        ],
+        "x": 720,
+        "y": 1740,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "checkall": "true",
+        "id": "f352e8bf.74e118",
+        "name": "route msg if power is on (Alexa controlled)",
+        "outputs": 1,
+        "property": "power",
+        "propertyType": "global",
+        "repair": false,
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "type": "switch",
+        "wires": [
+            [
+                "36d4460e.b60132"
+            ]
+        ],
+        "x": 200,
+        "y": 440,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "edbaef55.d263c8",
+        "method": "get",
+        "name": "power",
+        "swaggerDoc": "",
+        "type": "http in",
+        "upload": false,
+        "url": "/power",
+        "wires": [
+            [
+                "7f1b39cc.3ee0c"
+            ]
+        ],
+        "x": 190,
+        "y": 1480,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "headers": {},
+        "id": "72f7406.3ec58c",
+        "name": "",
+        "statusCode": "",
+        "type": "http response",
+        "wires": [],
+        "x": 720,
+        "y": 1480,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "func": "msg.payload = {\n    power:global.get(\"power\"),\n};\nreturn msg;",
+        "id": "7f1b39cc.3ee0c",
+        "name": "set payload to power status",
+        "noerr": 0,
+        "outputs": 1,
+        "type": "function",
+        "wires": [
+            [
+                "72f7406.3ec58c"
+            ]
+        ],
+        "x": 510,
+        "y": 1480,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "active": false,
+        "complete": "false",
+        "console": false,
+        "id": "75daba83.cfb7b4",
+        "name": "",
+        "tosidebar": true,
+        "tostatus": false,
+        "type": "debug",
+        "wires": [],
+        "x": 390,
+        "y": 400,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "2436a763.c7107",
+        "info": "",
+        "name": "Turn star on/off' - local test harness here. Could use commands over MQTT e.g. for Alexa-control using Alexa Home Skill Bridge",
+        "type": "comment",
+        "wires": [],
+        "x": 470,
+        "y": 1600,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "6bee1cc0.85c2cc",
+        "info": "",
+        "name": "Expose 'power' status (on/off) as an API for Python program to query to turn star on/off",
+        "type": "comment",
+        "wires": [],
+        "x": 459,
+        "y": 1433,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "736734c7.7ea374",
+        "info": "",
+        "name": "Expose 'lastWindowMostPopular' tweet class (brexit/christmas/covid) as an API for Python program to query to change star LED pattern",
+        "type": "comment",
+        "wires": [],
+        "x": 467.8888854980469,
+        "y": 1274.5555334091187,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "a832dbdd.7f874",
+        "info": "",
+        "name": "Consumes kafka topic. Tracks the tweet class with the highest count in this window.",
+        "type": "comment",
+        "wires": [],
+        "x": 410,
+        "y": 798,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "d7e9832c.57e02",
+        "info": "",
+        "name": "Test harness consumer of kakfa topic",
+        "type": "comment",
+        "wires": [],
+        "x": 610,
+        "y": 40,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "40052206.0f2394",
+        "info": "",
+        "name": "Test harness producer to kakfa topic",
+        "type": "comment",
+        "wires": [],
+        "x": 200,
+        "y": 40,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "ff48addf.cc0d5",
+        "info": "",
+        "name": "Receives tweets of interest, classifies them and produces them to a kafka topic for aggregation",
+        "type": "comment",
+        "wires": [],
+        "x": 350,
+        "y": 300,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "96b20900.8e81b8",
+        "info": "",
+        "name": "Only process messages when power is 'on'",
+        "type": "comment",
+        "wires": [],
+        "x": 175,
+        "y": 475,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "id": "88fc77f0.bd0a28",
+        "info": "",
+        "name": "Sets the 'lastWindowMostPopular' when the window changes.",
+        "type": "comment",
+        "wires": [],
+        "x": 550,
+        "y": 839,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "ackTimeoutMs": 100,
+        "attributes": 0,
+        "broker": "",
+        "id": "cd3246a0.3562e8",
+        "name": "helloworld topic",
+        "requireAcks": 1,
+        "topic": "helloworld",
+        "type": "kafka-producer",
+        "wires": [],
+        "x": 300,
+        "y": 140,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "crontab": "",
+        "id": "9c0400ba.6fa32",
+        "name": "Power on",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "topic": "",
+        "type": "inject",
+        "wires": [
+            [
+                "f1b4f27e.42f5e8"
+            ]
+        ],
+        "x": 160,
+        "y": 1720,
+        "z": "d0969b4.b807368"
+    },
+    {
+        "crontab": "",
+        "id": "813878dc.e97908",
+        "name": "Power off",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "topic": "",
+        "type": "inject",
+        "wires": [
+            [
+                "f1b4f27e.42f5e8"
+            ]
+        ],
+        "x": 160,
+        "y": 1760,
+        "z": "d0969b4.b807368"
+    }
+]
