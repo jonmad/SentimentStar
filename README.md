@@ -18,7 +18,7 @@ Node-RED and the Python app (code attached) are both running on a local Raspberr
 The Node-RED flow is attached.  View the raw content and import it into Node-RED from the clipboard.
 - this requries a Twitter account with a developer account (http://developer.twitter.com) to obtain the desired credentials for the Twitter input node.  This uses https://flows.nodered.org/node/node-red-node-twitter  
 - the Kafka producer/consumer nodes require the hostname of the Kafka cluster.  This uses https://flows.nodered.org/node/node-red-contrib-kafka-client
-- there is also a hook to set the 'power' as 'on' or 'off', via MQTT.  I have done this by responding to 'Alexa, turn star on/off' commands over MQTT - via Alexa Home Skill Bridge (https://alexa-node-red.bm.hardill.me.uk) and Node-RED running on the IBM Watson IoT Platform - as I happen to have an instance running there, with the ALexa Home Bridge already set up.
+- there is also a hook to set the 'power' as 'on' or 'off', via MQTT.  I have done this by responding to 'Alexa, turn star on/off' commands over MQTT - via Alexa Home Skill Bridge (https://alexa-node-red.bm.hardill.me.uk) and Node-RED running on the IBM Watson IoT Platform - as I happen to have an instance running there, with the Alexa Home Bridge already set up.
 - this produces data to a kafka topic called 'nodered, which gets created automatically.  There is also a 'helloworld' test in the flow to confirm Kafka connectivity.
 
 The Python source code is already attached.  This has two threads, sharing global variables (probably a lazy way to do it).
@@ -27,8 +27,8 @@ The Python source code is already attached.  This has two threads, sharing globa
 
 My python app used code from https://github.com/modmypi/Programmable-Christmas-Star as the basis.
 
-Kafka has just two ksql commands - a stream and a table:
-- To create a stream representing the 'nodered' topics written to by Node-RED
+Kafka has just two ksql commands - a stream and a table, created as persistent querirs that run continuously:
+- To create a stream representing the 'nodered' topics written to by Node-RED:
 ksql> create stream nodered (tweettime int, tweetclass varchar) with (kafka_topic='nodered', value_format='JSON');
 
 - To aggregate the data into 30 second windows:
