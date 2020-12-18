@@ -9,7 +9,10 @@ Here's the star: https://thepihut.com/products/raspberry-pi-christmas-tree-star
 
 For a photo of it installed: https://twitter.com/jonmaddison/status/1338543901817311235
 
-For Kafka, I installed the Confluent Platform Community Components edition from https://www.confluent.io/download/ onto my Mac on my home network. 
+For Kafka, I installed the Confluent Platform Community Components edition from https://www.confluent.io/download/ onto my Mac on my home network.  I followed the instructions at https://docs.confluent.io/platform/current/quickstart/cos-quickstart.html.  Once installed, to restart it requires just these three commands
+1. export CONFLUENT_HOME=/path-to-confluent
+2. export PATH="${CONFLUENT_HOME}/bin:$PATH"
+3. confluent local services start
 
 Node-RED and the Python app (code attached) are both running on a local Raspberry Pi Zero - that which is hanging off my Christmas tree with the Star attached.  Its hostname is 'pistar'.
 
