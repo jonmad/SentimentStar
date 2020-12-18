@@ -36,3 +36,7 @@ ksql> create stream nodered (tweettime int, tweetclass varchar) with (kafka_topi
 - To aggregate the data into 30 second windows:
 ksql> create table tweetsperperiod as select tweetclass, count(tweetclass) as count from nodered window tumbling (size 30 seconds) group by tweetclass;
 This creates a tweetsperperiod topic that is consumed back into Node-RED.  Note that every update to this topic is continuously consumed so Node-RED needs to keep track of the highest count per topic, per window. 
+
+- To observe the counts being aggregated within each 30 second window from within Kafka:
+ksql> select * from tweetsperperiod emit changes;
+As with all non-peristent queries, this will run until Ctrl-C is pressed.
