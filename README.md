@@ -10,9 +10,9 @@ Here's the star: https://thepihut.com/products/raspberry-pi-christmas-tree-star
 For a photo of it installed: https://twitter.com/jonmaddison/status/1338543901817311235
 
 For Kafka, I installed the Confluent Platform Community Components edition from https://www.confluent.io/download/ onto my Mac on my home network.  I followed the instructions at https://docs.confluent.io/platform/current/quickstart/cos-quickstart.html.  Once installed, to restart it requires just these three commands
-1. export CONFLUENT_HOME=/path-to-confluent
-2. export PATH="${CONFLUENT_HOME}/bin:$PATH"
-3. confluent local services start
+1. `export CONFLUENT_HOME=/path-to-confluent`
+2. `export PATH="${CONFLUENT_HOME}/bin:$PATH"`
+3. `confluent local services start`
 
 Node-RED and the Python app (code attached) are both running on a local Raspberry Pi Zero - that which is hanging off my Christmas tree with the Star attached.  Its hostname is 'pistar'.
 
@@ -39,12 +39,12 @@ My python app used code from https://github.com/modmypi/Programmable-Christmas-S
 ## The ksql Application
 ksql is an application that comes with Kafka that uses the Kafka Streams API under the covers.  For this project I used ksql from the command line.  I needed just two ksql commands - creating a stream and a table, created as persistent queries that run continuously:
 - To create a stream representing the 'nodered' topics written to by Node-RED:
-ksql> create stream nodered (tweettime int, tweetclass varchar) with (kafka_topic='nodered', value_format='JSON');
+`ksql> create stream nodered (tweettime int, tweetclass varchar) with (kafka_topic='nodered', value_format='JSON');`
 
 - To aggregate the data into 30 second windows:
-ksql> create table tweetsperperiod as select tweetclass, count(tweetclass) as count from nodered window tumbling (size 30 seconds) group by tweetclass;
+`ksql> create table tweetsperperiod as select tweetclass, count(tweetclass) as count from nodered window tumbling (size 30 seconds) group by tweetclass;`
 This creates a tweetsperperiod topic that is consumed back into Node-RED.  Note that every update to this topic is continuously consumed so Node-RED needs to keep track of the highest count per topic, per window. 
 
 - To observe the counts being aggregated within each 30 second window from within Kafka:
-ksql> select * from tweetsperperiod emit changes;
+`ksql> select * from tweetsperperiod emit changes;`
 As with all non-peristent queries, this will run until Ctrl-C is pressed.
