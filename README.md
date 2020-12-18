@@ -16,6 +16,12 @@ For Kafka, I installed the Confluent Platform Community Components edition from 
 
 Node-RED and the Python app (code attached) are both running on a local Raspberry Pi Zero - that which is hanging off my Christmas tree with the Star attached.  Its hostname is 'pistar'.
 
+The recommended order of getting these components running is
+1. ksql
+2. Node-RED, as it produces and consumes the Kafka topics
+3. Python, as it calls APIs exposed by Node-RED
+
+## The Node-RED Application
 The Node-RED flow is attached.  View the raw content and import it into Node-RED from the clipboard.
 - this requries a Twitter account with a developer account (http://developer.twitter.com) to obtain the desired credentials for the Twitter input node.  This uses https://flows.nodered.org/node/node-red-node-twitter  
 - the Kafka producer/consumer nodes require the hostname:port of the Kafka cluster e.g. Jons-MacbookPro:9092.  This uses https://flows.nodered.org/node/node-red-contrib-kafka-client
@@ -23,13 +29,15 @@ The Node-RED flow is attached.  View the raw content and import it into Node-RED
 - when the Twitter input node is enabled, this produces data to a kafka topic called 'nodered, which gets created automatically.  There is also a 'helloworld' test in the flow to confirm Kafka connectivity.
 - the flow exposes two global variables through HTTP GET endpoints.  These are called by the Python app.
 
+## The Python Application
 The Python source code is also attached.  This has two threads, sharing global variables (probably a lazy way to do it).
 - thread 1: polls the Node-RED API running locally to get 'power' and the 'lastWindowMostPopular' tweet topic.
 - main thread: sets the star LED pattern based on the most popular topic, or turns lights off on the star if power is 'off'. 
 
 My python app used code from https://github.com/modmypi/Programmable-Christmas-Star as the basis.
 
-Kafka has just two ksql commands - a stream and a table, created as persistent queries that run continuously:
+## The ksql Application
+ksql is an application that comes with Kafka that uses the Kafka Streams API under the covers.  For this project I used ksql from the command line.  I needed just two ksql commands - creating a stream and a table, created as persistent queries that run continuously:
 - To create a stream representing the 'nodered' topics written to by Node-RED:
 ksql> create stream nodered (tweettime int, tweetclass varchar) with (kafka_topic='nodered', value_format='JSON');
 
