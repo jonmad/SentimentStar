@@ -47,8 +47,11 @@ ksql> `create stream nodered (tweettime int, tweetclass varchar) with (kafka_top
 
 - To aggregate the data into 30 second windows:
 ksql> `create table tweetsperperiod as select tweetclass, count(tweetclass) as count from nodered window tumbling (size 30 seconds) group by tweetclass;`
-This creates a tweetsperperiod topic that is consumed back into Node-RED.  Note that every update to this topic is continuously consumed so Node-RED needs to keep track of the highest count per topic, per window. 
+This creates a tweetsperperiod topic that is consumed back into Node-RED.  Note that every update to this topic is continuously consumed so Node-RED needs to keep track of the highest count per topic, per window.  The 'tumbling' window type means the count resets every 30 seconds, it's not a continuous counnt over any 30 second period.  That would be available using a hopping window - see https://docs.ksqldb.io/en/latest/concepts/time-and-windows-in-ksqldb-queries/#tumbling-window)
 
 - To observe the counts being aggregated within each 30 second window from within Kafka:
 ksql> `select * from tweetsperperiod emit changes;`
 As with all non-peristent queries, this will run until Ctrl-C is pressed.
+
+As the data is persistent and immutable, for 7 days as the default retention period, other queries can be run over the historical data and in real-time.  e.g. ksql> 
+`select tweetclass, count(tweetclass) as count from nodered window tumbling (size 1 day) group by tweetclass emit changes;` for the daily counts.
