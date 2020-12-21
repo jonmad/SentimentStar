@@ -37,7 +37,9 @@ The Python source code is also attached.  This has two threads, sharing global v
 My python app used code from https://github.com/modmypi/Programmable-Christmas-Star as the basis.
 
 ## The ksql Application
-ksql is an application that comes with Kafka that uses the Kafka Streams API under the covers.  For this project I used ksql from the command line.  I needed just two ksql commands - creating a stream and a table, created as persistent queries that run continuously:
+ksql is an application that comes with Kafka that uses the Kafka Streams API under the covers.  For this project I used ksql from the command line.  First I created the topic from the terminal command line: `kafka-topics --create --bootstrap-server localhost:9092   --replication-factor 1   --partitions 1  --topic nodered`
+
+I then ran `ksql` and needed just two ksql commands - creating a stream and a table, created as persistent queries that run continuously:
 - To create a stream representing the 'nodered' topics written to by Node-RED:
 ksql> `create stream nodered (tweettime int, tweetclass varchar) with (kafka_topic='nodered', value_format='JSON');`
 
